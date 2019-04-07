@@ -5,6 +5,7 @@ What is Docker?
 
 ## SO hypervisor is a program which is managing lots of os(windows, linux, mac) in your virtualbox and hypervisor uses your single hardware resources. 
 
+![hypervisor](https://user-images.githubusercontent.com/33630256/55679144-f0cbde80-5927-11e9-92b3-39480d54a949.png)
 
 
 
