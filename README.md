@@ -11,6 +11,9 @@ What is Docker?
 ### Now Docker?
 ![docker](https://user-images.githubusercontent.com/33630256/55680270-62f8ef00-5939-11e9-9e4e-46e325a0a580.png)
 
+If you are using ubuntu then command ls / . You wll see bin dev lib64 sys and so on. Docker creates tunnel with our os. Using our os resources. Imagine we have a node js application and another php application. So we need to run this application in two seperate server in serperate conatiners. In docker we have containers. In containers we save node, php, django application and 
+running separately. That's the difference between hypervisor and Docker. 
 
 ## How to set up docker in Linux?
-<p>docker </p>
+<p>how to install docker ubuntu 18.04 </p>
+
