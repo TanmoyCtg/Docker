@@ -89,4 +89,13 @@ remove all containers
 
 
 
+Nodejs Dockerize 
 
+`mkdir node_project`
+`cd node_project`
+`code .`
+`open the terminal vs code`
+`npm init`
+`npm install express --save`
+
+https://nodejs.org/de/docs/guides/nodejs-docker-webapp/
