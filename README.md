@@ -209,3 +209,18 @@ ls -l
 }
 
 `sudo docker-compose up`
+
+`sudo docker-compose down`
+
+if you want run your application in background then use this.
+Detached mode, shown by the option --detach or -d, means that a Docker container runs in the background of your terminal. It does not receive input or display output. If you run containers in the background, you find out their details and then reattach your terminal to its input and output.
+
+
+
+docker run --detach IMAGE 
+
+
+resources
+
+https://medium.freecodecamp.org/dockers-detached-mode-for-beginners-c53095193ee9
+
