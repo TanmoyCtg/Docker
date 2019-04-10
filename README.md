@@ -99,3 +99,113 @@ Nodejs Dockerize
 `npm install express --save`
 
 https://nodejs.org/de/docs/guides/nodejs-docker-webapp/
+
+
+## Django Dockerize
+
+First you need to install docker compose 
+
+`sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+
+`sudo chmod +x /usr/local/bin/docker-compose`
+
+`sudo docker-compose --version`
+
+make a new directory
+
+`mkdir django_docker`
+
+`cd django_docker`
+
+`touch Dockerfile`
+
+add the following content Dockerfile
+
+
+`FROM python:3`
+
+`ENV PYTHONUNBUFFERED 1`
+
+`RUN mkdir /code`
+
+`WORKDIR /code`
+
+`COPY requirements.txt /code/`
+
+`RUN pip install -r requirements.txt`
+
+`COPY . /code/`
+
+then create requirements.txt file
+
+`touch requirements.txt`
+
+add this content on requirements.txt
+
+`Django>=2.0,<3.0`
+
+`psycopg2>=2.7,<3.0`
+
+save the requirements.txt file
+
+Create a file called docker-compose.yml in your project directory.
+
+version: '3'
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      
+
+Save and close the docker-compose.yml file.
+      
+## when see this error <b>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+</b> in ubuntu 18.04 do this
+
+`service docker restart`
+
+## Create Django project
+
+`sudo docker-compose run web django-admin startproject composeexample .`
+
+ls -l
+drwxr-xr-x 2 root   root   composeexample
+-rw-rw-r-- 1 user   user   docker-compose.yml
+-rw-rw-r-- 1 user   user   Dockerfile
+-rwxr-xr-x 1 root   root   manage.py
+-rw-rw-r-- 1 user   user   requirements.txt
+
+If you are running Docker on Linux, the files django-admin created are owned by root. This happens because the container runs as the root user. Change the ownership of the new files.
+
+`sudo chown -R $USER:$USER .`
+
+ls -l
+ total 32
+ -rw-r--r--  1 user  staff  145 Feb 13 23:00 Dockerfile
+ drwxr-xr-x  6 user  staff  204 Feb 13 23:07 composeexample
+ -rw-r--r--  1 user  staff  159 Feb 13 23:02 docker-compose.yml
+ -rwxr-xr-x  1 user  staff  257 Feb 13 23:07 manage.py
+ -rw-r--r--  1 user  staff   16 Feb 13 23:01 requirements.txt
+ 
+ go to composeexample file 
+ 
+ 
+ DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
+
+`sudo docker-compose up`
